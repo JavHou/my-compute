@@ -21,4 +21,6 @@ urlpatterns = [
     path('computev1/',views.computev1),
     path('compute-ajax/',views.compute_ajax),
     path('result/',views.result),
+    path('compute_history',views.compute_history),
+    path('result-result', views.result_history),
 ]
