@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>在线计算器ajax版</title>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        function clicknum(num) {
+            str=document.getElementById("res");
+            str.value=str.value+num;
+        }
+        function clickdel() {
+            document.getElementById("res").value="";
+        }
+        function clickres(){
+            if (document.getElementById("res").value===""){
+                    str.value="";
+                    alert("请输入算式")
+                    return
+            }
+            $.ajax({
+                url:"http://127.0.0.1:8000/result",
+                data:{
+                    "input_str":document.getElementById("res").value
+                },
+                success:function(arg){
+                    if (arg.result==="error"){
+                        str.value="";
+                        alert("输入的算式有误");
+                    }
+                    else{
+                        document.getElementById("res").value=arg.result;
+                    }
+                }
+            })
+        }
+
+    </script>
+</head>
+<body>
+      <table border="1" cellpadding="5px" cellspacing="0px">
+        <tr align="center">
+            <td colspan="4"><input type="text" id="res"></td>
+        </tr>
+        <tr align="center">
+            <td><input type="button" value="1" onclick="clicknum(1)"></td>
+            <td><input type="button" value="2" onclick="clicknum(2)"></td>
+            <td><input type="button" value="3" onclick="clicknum(3)"></td>
+            <td><input type="button" value="+" onclick="clicknum('+')"></td>
+        </tr>
+        <tr align="center">
+            <td><input type="button" value="4" onclick="clicknum(4)"></td>
+            <td><input type="button" value="5" onclick="clicknum(5)"></td>
+            <td><input type="button" value="6" onclick="clicknum(6)"></td>
+            <td><input type="button" value="-" onclick="clicknum('-')"></td>
+        </tr>
+        <tr align="center">
+            <td><input type="button" value="7"onclick="clicknum(7)"></td>
+            <td><input type="button" value="8"onclick="clicknum(8)"></td>
+            <td><input type="button" value="9"onclick="clicknum(9)"></td>
+            <td><input type="button" value="*"onclick="clicknum('*')"></td>
+        </tr>
+        <tr align="center">
+            <td><input type="button" value="." onclick="clicknum('.')"></td>
+            <td><input type="button" value="0" onclick="clicknum(0)"></td>
+            <td><input type="button" value="del" onclick="clickdel()"></td>
+            <td><input type="button" value="/" onclick="clicknum('/')"></td>
+        </tr>
+        <tr align="center">
+            <td colspan="4" > <input type="button" value="=" onclick="clickres()"></td>
+      </table>
+</body>
+</html>
