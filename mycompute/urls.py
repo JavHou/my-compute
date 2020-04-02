@@ -15,12 +15,15 @@ Including another URLconf
 """
 # from django.contrib import admin
 from django.urls import path
+from django.views.generic.base import RedirectView
 from compute import views
 urlpatterns = [
     #    path('admin/', admin.site.urls),
     path('computev1/',views.computev1),
     path('compute-ajax/',views.compute_ajax),
     path('result/',views.result),
-    path('compute_history',views.compute_history),
-    path('result-result', views.result_history),
+    path('compute-history/',views.compute_history),
+    path('result-history/', views.result_history),
+    path('login/',views.login),
+    # path('favicon.ico/', RedirectView.as_view(url=r'static/favicon.ico')),
 ]
