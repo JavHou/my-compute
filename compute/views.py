@@ -52,7 +52,7 @@ def auth(func):
         if is_login:
             return func(request, *args, **kwargs)
         else:
-            return redirect('login.html')
+            return redirect('/login')
     return inner
 
 #计算器页面视图，返回计算历史
